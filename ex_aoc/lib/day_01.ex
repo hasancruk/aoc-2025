@@ -8,19 +8,19 @@ defmodule Day01 do
 
   ## Examples
 
-      iex> Day01.dial(0, 99, 12)
+      iex> Day01.dial(12, 0, 99)
       12
 
   """
-  def dial(min, max, n) when n > max do
+  def dial(n, min, max) when n > max do
     diff = n-1-max
-    dial(min, max, min+diff)
+    dial(min+diff, min, max)
   end
 
-  def dial(min, max, n) when n < min do
+  def dial(n, min, max) when n < min do
     diff = abs(min-n) - 1
-    dial(min, max, max-diff)
+    dial(max-diff, min, max)
   end
 
-  def dial(_, _, n), do: n
+  def dial(n, _, _), do: n
 end

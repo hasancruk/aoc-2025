@@ -3,6 +3,15 @@ defmodule Day01 do
   Documentation for `Day01`.
   """
 
+  def read_file_to_list(name) do
+    {:ok, content} = File.read(name)
+
+    content
+    |> String.split("\n")
+    |> Enum.map(&String.trim/1)
+    |> Enum.filter(fn str -> String.length(str) != 0 end)
+  end
+
   @doc """
   Count every time the dial lands on zero
 

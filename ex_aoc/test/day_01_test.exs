@@ -3,21 +3,24 @@ defmodule Day01Test do
   doctest Day01
 
   import Day01
-# Following these rotations would cause the dial to move as follows:
 
-#     The dial starts by pointing at 50.
-#     The dial is rotated L68 to point at 82.
-#     The dial is rotated L30 to point at 52.
-#     The dial is rotated R48 to point at 0.
-#     The dial is rotated L5 to point at 95.
-#     The dial is rotated R60 to point at 55.
-#     The dial is rotated L55 to point at 0.
-#     The dial is rotated L1 to point at 99.
-#     The dial is rotated L99 to point at 0.
-#     The dial is rotated R14 to point at 14.
-#     The dial is rotated L82 to point at 32.
+  test "count zeros after moves" do
+    start = 50
+    moves = [
+      "L68",
+      "L30",
+      "R48",
+      "L5",
+      "R60",
+      "L55",
+      "L1",
+      "L99",
+      "R14",
+      "L82",
+    ]
+    assert count_zeros(moves, start, 0, 99) == 3
+  end
 
-# Because the dial points at 0 a total of three times during this process, the password in this example is 3.
   test "parse moves to signed numbers" do
     moves = [
       "L68",
@@ -45,23 +48,7 @@ defmodule Day01Test do
     ]
 
     assert parse_moves(moves) == expected
-
   end
-
-  # test "count zeros before moving to new positions" do
-  #   moves = [
-  #     "L68",
-  #     "L30",
-  #     "R48",
-  #     "L5 ",
-  #     "R60",
-  #     "L55",
-  #     "L1 ",
-  #     "L99",
-  #     "R14",
-  #     "L82",
-  #   ]
-  # end
 
   test "move from starting position to get new position" do
     min = 0

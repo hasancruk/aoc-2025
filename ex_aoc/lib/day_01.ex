@@ -4,6 +4,27 @@ defmodule Day01 do
   """
 
   @doc """
+  Count every time the dial lands on zero
+
+  ## Examples
+
+    iex > Day01.count_zeros(["L3", "R3"], 3, 0, 99)
+    1
+  """
+  def count_zeros(moves, start, min \\ 0, max \\ 99) do
+    {_, zero_count} = moves
+    |> parse_moves()
+    |> Enum.reduce({start, 0}, fn step, {p, count} ->
+      {
+        move(p, step, min, max),
+        if p == 0 do count+1 else count end
+      }
+    end)
+
+    zero_count
+  end
+
+  @doc """
   Parses moves from string syntax to numeric representation
 
   ## Examples

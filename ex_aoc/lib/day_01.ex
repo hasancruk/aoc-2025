@@ -4,6 +4,42 @@ defmodule Day01 do
   """
 
   @doc """
+  Parses moves from string syntax to numeric representation
+
+  ## Examples
+
+      iex> Day01.parse_moves(["L2", "R3"])
+      [-2, 3]
+
+  """
+  def parse_moves(moves) do
+    moves
+    |> Enum.map(&parse_move/1)
+  end
+
+  defp parse_move("L" <> num) do
+    String.to_integer(num) * -1
+  end
+
+  defp parse_move("R" <> num) do
+    String.to_integer(num)
+  end
+
+  @doc """
+  Move one step from a starting position
+
+  ## Examples
+
+      iex> Day01.move(50, -10)
+      40
+
+  """
+  def move(start, step, min \\ 0, max \\ 99) do
+    start+step
+    |> dial(min, max)
+  end
+
+  @doc """
   Dial is a circular function that will tell you the current number based on the input that is within the min and max range.
 
   ## Examples

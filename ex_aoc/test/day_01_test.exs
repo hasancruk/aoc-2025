@@ -50,6 +50,31 @@ defmodule Day01Test do
     assert parse_moves(moves) == expected
   end
 
+  # test "instrumented move from starting position to get new position" do
+  #   min = 0
+  #   max = 99
+  #   assert instrumented_move(11, 8, 0, min, max) == {19, 0}
+  #   assert instrumented_move(1, 2, 0, 0, 2) == {19, 0}
+  #   # assert move(19, -19, min, max) == 0
+
+  #   # assert move(5, -10, min, max) == 95
+  #   # assert move(95, 5, min, max) == 0
+  # end
+
+  test "distance to marker" do
+    assert distance_to_marker(:right, -1, 0, -1, 1) == 1
+    assert distance_to_marker(:right, 0, 0, -1, 1) == 0
+    assert distance_to_marker(:right, 1, 0, -1, 1) == 2
+    assert distance_to_marker(:left, 0, 0, -1, 1) == 0
+    assert distance_to_marker(:left, 1, 0, -1, 1) == 1
+    assert distance_to_marker(:left, -1, 0, -1, 1) == 2
+
+    assert distance_to_marker(:right, 95, 0, 0, 99) == 5
+    assert distance_to_marker(:right, 95, 5, 0, 99) == 10
+    assert distance_to_marker(:left, 5, 0, 0, 99) == 5
+    assert distance_to_marker(:left, 95, 96, 0, 99) == 99
+  end
+
   test "move from starting position to get new position" do
     min = 0
     max = 99

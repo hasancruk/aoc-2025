@@ -55,6 +55,67 @@ defmodule Day01 do
     String.to_integer(num)
   end
 
+  # @doc """
+  # Move one step from a starting position counting the number of times it crosses a marker
+
+  # ## Examples
+
+  #     iex> Day01.instrumented_move(50, -10)
+  #     {40, 0}
+
+  #     iex> Day01.instrumented_move(10, -15)
+  #     {95, 1}
+
+  # """
+  # def instrumented_move(start, step, marker \\ 0, min \\ 0, max \\ 99) do
+  #   _ = marker
+  #   # is marker between start and result?
+  #   # How many times does it cross the marker
+  #   result = start+step
+  #   |> dial(min, max)
+
+  #   {result, 0}
+  # end
+
+  @doc """
+  Measure the distance from starting point to marker depending on the direction of measurement. If thought of as a circle, right is clockwise and left is counter-clockwise.
+
+  ## Examples
+
+      iex> Day01.distance_to_marker(:left, 95, 96, 0, 99)
+      99
+
+      iex> Day01.distance_to_marker(:right, 95, 96, 0, 99)
+      1
+
+  """
+  def distance_to_marker(direction, start, marker \\ 0, min \\ 0, max \\ 99)
+
+  def distance_to_marker(:left, start, marker, min, max) when marker > start do
+    to_min = min - start
+    to_marker = marker - max
+
+    abs(to_min) + abs(to_marker) + 1
+  end
+
+  def distance_to_marker(:left, start, marker, _, _) when marker < start do
+    abs(marker - start)
+  end
+
+  def distance_to_marker(:right, start, marker, _, _) when marker > start do
+    abs(marker - start)
+  end
+
+  def distance_to_marker(:right, start, marker, min, max) when marker < start do
+    to_max = max - start
+    to_marker = marker - min
+
+    to_max + to_marker + 1
+  end
+
+  def distance_to_marker(_, start, marker, _, _) when marker == start, do: 0
+  # def distance_to_marker(_, _, marker, min, max) when marker == start, do: 0
+
   @doc """
   Move one step from a starting position
 

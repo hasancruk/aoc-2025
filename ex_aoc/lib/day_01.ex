@@ -13,6 +13,25 @@ defmodule Day01 do
   end
 
   @doc """
+  Count every time the dial passes through and lands on zero
+
+  ## Examples
+
+    iex > Day01.count_all_zeros(["L4", "R10"], 3, 0, 99)
+    2
+  """
+  def count_all_zeros(moves, start, min \\ 0, max \\ 99) do
+    {_, zero_count} = moves
+    |> parse_moves()
+    |> Enum.reduce({start, 0}, fn step, {p, count} ->
+      {new_position, c} = instrumented_move(p, step, 0, min, max)
+      {new_position, count + c}
+    end)
+
+    zero_count
+  end
+
+  @doc """
   Count every time the dial lands on zero
 
   ## Examples

@@ -4,6 +4,23 @@ defmodule Day01Test do
 
   import Day01
 
+  test "count zeros during and after moves" do
+    start = 50
+    moves = [
+      "L68",
+      "L30",
+      "R48",
+      "L5",
+      "R60",
+      "L55",
+      "L1",
+      "L99",
+      "R14",
+      "L82",
+    ]
+    assert count_all_zeros(moves, start, 0, 99) == 6
+  end
+
   test "count zeros after moves" do
     start = 50
     moves = [

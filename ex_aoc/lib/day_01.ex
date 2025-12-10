@@ -20,11 +20,11 @@ defmodule Day01 do
     iex > Day01.count_all_zeros(["L4", "R10"], 3, 0, 99)
     2
   """
-  def count_all_zeros(moves, start, min \\ 0, max \\ 99) do
+  def count_all_zeros(moves, start, marker \\ 0, min \\ 0, max \\ 99) do
     {_, zero_count} = moves
     |> parse_moves()
     |> Enum.reduce({start, 0}, fn step, {p, count} ->
-      {new_position, c} = instrumented_move(p, step, 0, min, max)
+      {new_position, c} = instrumented_move(p, step, marker, min, max)
       {new_position, count + c}
     end)
 
@@ -39,13 +39,13 @@ defmodule Day01 do
     iex > Day01.count_zeros(["L3", "R3"], 3, 0, 99)
     1
   """
-  def count_zeros(moves, start, min \\ 0, max \\ 99) do
+  def count_zeros(moves, start, marker \\ 0, min \\ 0, max \\ 99) do
     {_, zero_count} = moves
     |> parse_moves()
     |> Enum.reduce({start, 0}, fn step, {p, count} ->
       {
         move(p, step, min, max),
-        if p == 0 do count+1 else count end
+        if p == marker do count+1 else count end
       }
     end)
 

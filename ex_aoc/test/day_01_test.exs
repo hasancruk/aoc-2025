@@ -18,7 +18,7 @@ defmodule Day01Test do
       "R14",
       "L82",
     ]
-    assert count_all_zeros(moves, start, 0, 99) == 6
+    assert count_all_zeros(moves, start, 0, 0, 99) == 6
   end
 
   test "count zeros after moves" do
@@ -35,7 +35,7 @@ defmodule Day01Test do
       "R14",
       "L82",
     ]
-    assert count_zeros(moves, start, 0, 99) == 3
+    assert count_zeros(moves, start, 0, 0, 99) == 3
   end
 
   test "parse moves to signed numbers" do
